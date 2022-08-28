@@ -6,3 +6,10 @@
 <a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 </p>
 
+___
+
+[mylearn](https://github.com/MichaelKarpe/mylearn) is a Machine Learning framework based on
+[Airflow](https://github.com/apache/airflow) and [MLflow](https://github.com/mlflow/mlflow) for designing machine
+learning systems in a production perspective.
+
+**Work in progress... Stay tuned!**

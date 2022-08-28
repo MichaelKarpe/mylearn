@@ -1,5 +1,20 @@
+.env
+.python-version
 .idea/
+.venv/
 build/
 dist/
 mylearn.egg-info/
+**/__pycache__/**
+**/.mypy_cache/**
+**/.pytest_cache/**
 
+metadata/
+mlruns/
+notebooks/.ipynb_checkpoints/
+
+airflow/airflow.cfg
+airflow/airflow.db
+airflow/airflow-webserver.pid
+airflow/webserver_config.py
+airflow/logs
