@@ -6,12 +6,6 @@ repos:
     -   id: end-of-file-fixer
     -   id: name-tests-test
     -   id: requirements-txt-fixer
--   repo: https://github.com/asottile/reorder_python_imports
-    rev: v3.8.2
-    hooks:
-    -   id: reorder-python-imports
-        exclude: ^(pre_commit/resources/|testing/resources/python3_hooks_repo/)
-        args: [--py37-plus, --add-import, 'from __future__ import annotations']
 -   repo: https://github.com/asottile/add-trailing-comma
     rev: v2.2.3
     hooks:

@@ -6,7 +6,7 @@ import pandas as pd
 import pytest
 from pandas import DataFrame
 
-from steps.split import process_splits
+from mlflow.steps.split import process_splits
 
 
 @pytest.fixture

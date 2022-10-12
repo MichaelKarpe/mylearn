@@ -7,7 +7,7 @@ import pandas as pd
 import pytest
 from pandas import DataFrame
 
-from steps.ingest import load_file_as_dataframe
+from mlflow.steps.ingest import load_file_as_dataframe
 
 
 @pytest.fixture

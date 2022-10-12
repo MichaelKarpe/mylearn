@@ -13,3 +13,83 @@ ___
 learning systems in a production perspective.
 
 **Work in progress... Stay tuned!**
+
+# Index
+
+1. [Prerequisites](#prerequisites)
+2. [Installation & Setup](#installation-setup)
+3. [Usage](#usage)
+
+# Prerequisites
+
+## pyenv
+
+To be completed with how to install and setup pyenv
+
+## poetry
+
+To be completed with how to install and setup poetry
+
+# Installation & Setup
+
+mylearn leverages [poetry](https://github.com/python-poetry/poetry) and [poethepoet](https://github.com/nat-n/poethepoet)
+to make its installation and setup surprisingly simple.
+
+## Installation
+
+It is recommended to install requirements within a virtualenv located at the project root level, although not required.
+```commandline
+poetry config virtualenvs.in-project true
+```
+
+Installation is run with
+```commandline
+poetry install
+```
+
+## Airflow Setup
+
+Airflow setup is initialized via a `poe` command
+```commandline
+poe airflow-init
+```
+
+Airflow Scheduler & Webserver can be run with
+```commandline
+poe airflow-scheduler
+poe airflow-webserver
+```
+
+Airflow UI can be opened at [localhost](0.0.0.0:8080) (port 8080), and you can login with username and password `admin`.
+
+If you want to clean your Airflow setup before rerunning `poe airflow-init`, you need to kill Airflow Scheduler &
+Webserver and run
+```commandline
+poe airflow-clean
+```
+
+## MLflow Setup
+
+MLflow UI can be opened at [localhost](0.0.0.0:5000) (port 5000) after execution of the following command:
+```commandline
+poe mlflow-ui
+```
+
+# Usage
+
+## MLflow Pipelines Regression Template
+
+The *mlflow-template* pipeline, based on the
+[MLflow Pipelines Regression Template](https://github.com/mlflow/mlp-regression-template), can be run independently with
+```commandline
+poe mlflow-run
+```
+
+or via an Airflow Directed Acyclic Graph (DAG) by triggering the *mlflow-template* DAG via Airflow UI or with
+```commandline
+TO BE COMPLETED
+```
+
+## Other examples
+
+**Work in progress... Stay tuned!**

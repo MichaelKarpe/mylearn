@@ -13,36 +13,96 @@ keywords = ["airflow", "mlflow"]
 
 [tool.poetry.dependencies]
 python = "^3.8,<3.11"  # Compatible python versions must be declared here
-apache-airflow = "^2.3.4"
-matplotlib = "^3.5.3"
-mlflow = {version = "^1.28", extras = ["pipelines"]}
-numba = "^0.56.0"
-pandas = "^1.4.3"
+apache-airflow = {version = "^2.4.1", extras = ["postgres"]}
+mlflow = {version = "^1.29.0", extras = ["pipelines"]}
+numba = "^0.56.2"
+pandas = "^1.5.0"
+psycopg2 = "^2.9.3,<2.9.4"
+
+[tool.poetry.group.clustering.dependencies]
+k-means-constrained = "^0.7.2"
+
+[tool.poetry.group.compvis.dependencies]
+opencv-python = "^4.6.0.66"
+scikit-image = "^0.19.3"
+
+[tool.poetry.group.dl.dependencies]
+keras = "^2.10.0"
+tensorflow = "^2.10.0"
+transformers = "^4.23.1"
+
+[tool.poetry.group.geo.dependencies]
+geopandas = "^0.11.1"
+
+[tool.poetry.group.gbms.dependencies]
+catboost = "^1.1"
+lightgbm = "^3.3.3"
+xgboost = "^1.6.2"
+
+[tool.poetry.group.ml.dependencies]
+hyperopt = "^0.2.7"
+mapie = "^0.4.2"
 scikit-learn = "^1.1.2"
+
+[tool.poetry.group.nlp.dependencies]
+spacy = "^3.4.1"
+
+[tool.poetry.group.plotting.dependencies]
+matplotlib = "^3.6.0"
+plotly = "^5.10.0"
+seaborn = "^0.12.0"
+
+[tool.poetry.group.sci.dependencies]
+scipy = "^1.9.2"
+
+[tool.poetry.group.scraping.dependencies]
+beautifulsoup4 = "^4.11.1"
+requests = "^2.28.1"
+
+[tool.poetry.group.stats.dependencies]
+statsmodels = "^0.13.2"
+
+[tool.poetry.group.qfinance.dependencies]
+empyrical = "^0.5.5"
+tslearn = "^0.5.2"
+
+[tool.poetry.group.qscraping.dependencies]
+yfinance = "^0.1.77"
 
 [tool.poetry.dev-dependencies]
 black = {version = "^22.6", extras = ["jupyter"]}
+flake8 = "^5.0.4"
 isort = "^5.10.1"
 jupyterlab = "^3.4.5"
 mypy = "^0.971"
+pandas-stubs = "^1.5.0.221012"
 pip = "^22.2.2"
 poethepoet = "^0.16.0"
 pre-commit = "^2.20.0"
 pylint = "^2.15"
 pytest = "^7.1.2"
 pytest-cov = "^3.0"
+types-requests = "^2.28.11.1"
 
 [tool.poe.env]
 AIRFLOW_HOME = "${PWD}/airflow"
 AIRFLOW__CORE__LOAD_EXAMPLES = "false"
-CODE_FOLDERS = "airflow/dags mylearn steps tests"
+AIRFLOW__CORE__DEFAULT_TIMEZONE = "Europe/Amsterdam"
+# AIRFLOW__CORE__EXECUTOR = "LocalExecutor"
+AIRFLOW__CORE__MAX_ACTIVE_RUNS_PER_DAG = "1"
+AIRFLOW__CORE__MAX_ACTIVE_TASKS_PER_DAG = "64"
+AIRFLOW__CORE__MAX_MAP_LENGTH = "65536"
+AIRFLOW__CORE__PARALLELISM = "64"
+# AIRFLOW__DATABASE__SQL_ALCHEMY_CONN = "postgresql+psycopg2://airflow:airflow@localhost/airflow"
+AIRFLOW__SCHEDULER__CATCHUP_BY_DEFAULT = "False"
+CODE_FOLDERS = "airflow/dags mlflow mylearn tests"
 MLFLOW_PIPELINES_PROFILE = "local"
 
 [tool.poe.tasks.airflow-clean]
 sequence = [
     {cmd = "rm -r airflow/logs"},
     {cmd = "rm airflow/airflow.cfg"},
-    {cmd = "rm airflow/airflow.db"},
+    {cmd = "rm airflow/airflow.db"},  # comment this line if Airflow LocalExecutor and database are uncommented above
     {cmd = "rm airflow/webserver_config.py"},
 ]
 
@@ -92,7 +152,7 @@ cmd = "flake8 --config=config/flake8.ini ${CODE_FOLDERS}"
 cmd = "isort ${CODE_FOLDERS}"
 
 [tool.poe.tasks.mypy]
-cmd = "mypy --config-file config/mypy.ini ${CODE_FOLDERS}"
+cmd = "mypy ${CODE_FOLDERS} --ignore-missing-imports"
 
 [tool.poe.tasks.reinstall]
 sequence = [
@@ -102,7 +162,7 @@ sequence = [
 ]
 
 [tool.poe.tasks.test]
-cmd = "pytest -c config/pytest.ini tests"
+cmd = "pytest tests"
 
 [tool.poe.tasks.checks]
 sequence = [
@@ -116,5 +176,5 @@ sequence = [
 line-length = 120
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core>=1.2.0"]
 build-backend = "poetry.core.masonry.api"

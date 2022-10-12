@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from sklearn.utils.estimator_checks import check_estimator
 
-from steps.train import estimator_fn
+from mlflow.steps.train import estimator_fn
 
 
 def test_train_fn_returns_object_with_correct_spec():

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from steps.transform import transformer_fn
+from mlflow.steps.transform import transformer_fn
 
 
 def test_tranform_fn_returns_object_with_correct_spec():

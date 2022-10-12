@@ -3,12 +3,14 @@
 .idea/
 .venv/
 build/
+data/
 dist/
 mylearn.egg-info/
 **/__pycache__/**
 **/.mypy_cache/**
 **/.pytest_cache/**
 
+airflow/dags/
 metadata/
 mlruns/
 notebooks/.ipynb_checkpoints/
