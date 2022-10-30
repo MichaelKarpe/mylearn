@@ -75,7 +75,7 @@ flake8 = "^5.0.4"
 ipython-autotime = "^0.3.1"
 isort = "^5.10.1"
 jupyterlab = "^3.4.5"
-mypy = "^0.971"
+mypy = "^0.982"
 # pandas-stubs = "^1.5.0.221012"
 pip = "^22.2.2"
 poethepoet = "^0.16.0"
@@ -89,12 +89,12 @@ types-requests = "^2.28.11.1"
 AIRFLOW_HOME = "${PWD}/airflow"
 AIRFLOW__CORE__LOAD_EXAMPLES = "false"
 AIRFLOW__CORE__DEFAULT_TIMEZONE = "Europe/Amsterdam"
-# AIRFLOW__CORE__EXECUTOR = "LocalExecutor"
+AIRFLOW__CORE__EXECUTOR = "LocalExecutor"
 AIRFLOW__CORE__MAX_ACTIVE_RUNS_PER_DAG = "1"
 AIRFLOW__CORE__MAX_ACTIVE_TASKS_PER_DAG = "64"
 AIRFLOW__CORE__MAX_MAP_LENGTH = "65536"
 AIRFLOW__CORE__PARALLELISM = "64"
-# AIRFLOW__DATABASE__SQL_ALCHEMY_CONN = "postgresql+psycopg2://airflow:airflow@localhost/airflow"
+AIRFLOW__DATABASE__SQL_ALCHEMY_CONN = "postgresql+psycopg2://airflow:airflow@localhost/airflow"
 AIRFLOW__SCHEDULER__CATCHUP_BY_DEFAULT = "False"
 CODE_FOLDERS = "airflow/dags mlflow mylearn tests"
 MLFLOW_PIPELINES_PROFILE = "local"
@@ -170,7 +170,7 @@ sequence = [
     {cmd = "poe black"},
     {cmd = "poe isort"},
     {cmd = "poe mypy"},
-    {cmd = "poe test"}
+    # {cmd = "poe test"}
 ]
 
 [tool.black]
