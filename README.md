@@ -1,4 +1,4 @@
-<h2 align="center">mylearn: my Machine Learning toolkit</h2>
+<h2 align="center">mylearn: my Machine Learning framework</h2>
 
 <p align="center">
 <a href="https://circleci.com/gh/MichaelKarpe/mylearn"><img alt="Build Status" src="https://circleci.com/gh/MichaelKarpe/mylearn.svg?style=shield"></a>

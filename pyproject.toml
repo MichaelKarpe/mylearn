@@ -12,30 +12,29 @@ homepage = ""
 keywords = ["airflow", "mlflow"]
 
 [tool.poetry.dependencies]
-python = "^3.8,<3.11"  # Compatible python versions must be declared here
-apache-airflow = {version = "^2.4.1", extras = ["postgres"]}
-mlflow = {version = "^1.29.0", extras = ["pipelines"]}
-numba = "^0.56.2"
-pandas = "^1.5.0"
-psycopg2 = "^2.9.3,<2.9.4"
+python = "^3.11,<3.12"  # Compatible python versions must be declared here
+apache-airflow = {version = "^2.4.2", extras = ["postgres"]}
+# mlflow = {version = "^1.30.0", extras = ["pipelines"]}
+pandas = "^1.5.1"
+psycopg2 = "^2.9.5"
 
 [tool.poetry.group.clustering.dependencies]
-k-means-constrained = "^0.7.2"
+# k-means-constrained = "^0.7.2"
 
 [tool.poetry.group.compvis.dependencies]
 opencv-python = "^4.6.0.66"
-scikit-image = "^0.19.3"
+# scikit-image = "^0.19.3"
 
 [tool.poetry.group.dl.dependencies]
 keras = "^2.10.0"
-tensorflow = "^2.10.0"
-transformers = "^4.23.1"
+# tensorflow = "^2.10.0"
+# transformers = "^4.23.1"
 
 [tool.poetry.group.geo.dependencies]
 geopandas = "^0.11.1"
 
 [tool.poetry.group.gbms.dependencies]
-catboost = "^1.1"
+# catboost = "^1.1"
 lightgbm = "^3.3.3"
 xgboost = "^1.6.2"
 
@@ -45,37 +44,39 @@ mapie = "^0.4.2"
 scikit-learn = "^1.1.2"
 
 [tool.poetry.group.nlp.dependencies]
-spacy = "^3.4.1"
+spacy = "^3.4.2"
 
 [tool.poetry.group.plotting.dependencies]
 matplotlib = "^3.6.0"
 plotly = "^5.10.0"
-seaborn = "^0.12.0"
+seaborn = "^0.12.1"
 
 [tool.poetry.group.sci.dependencies]
-scipy = "^1.9.2"
+scipy = "^1.9.3"
+fastcluster = "^1.2.6"
 
 [tool.poetry.group.scraping.dependencies]
 beautifulsoup4 = "^4.11.1"
 requests = "^2.28.1"
 
 [tool.poetry.group.stats.dependencies]
-statsmodels = "^0.13.2"
+# statsmodels = "^0.13.2"
 
 [tool.poetry.group.qfinance.dependencies]
 empyrical = "^0.5.5"
-tslearn = "^0.5.2"
+# tslearn = "^0.5.2"
 
 [tool.poetry.group.qscraping.dependencies]
-yfinance = "^0.1.77"
+yfinance = "^0.1.79"
 
 [tool.poetry.dev-dependencies]
 black = {version = "^22.6", extras = ["jupyter"]}
 flake8 = "^5.0.4"
+ipython-autotime = "^0.3.1"
 isort = "^5.10.1"
 jupyterlab = "^3.4.5"
 mypy = "^0.971"
-pandas-stubs = "^1.5.0.221012"
+# pandas-stubs = "^1.5.0.221012"
 pip = "^22.2.2"
 poethepoet = "^0.16.0"
 pre-commit = "^2.20.0"
@@ -176,5 +177,5 @@ sequence = [
 line-length = 120
 
 [build-system]
-requires = ["poetry-core>=1.2.0"]
+requires = ["poetry-core>=1.3.2"]
 build-backend = "poetry.core.masonry.api"
