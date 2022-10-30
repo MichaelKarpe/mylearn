@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "mylearn"
-version = "0.1.0"
-description = "mylearn: my Machine Learning toolkit"
+version = "0.0.2"
+description = "mylearn: my Machine Learning framework"
 license = "MIT"
 authors = [
     "Michael Karpe <michael.karpe@berkeley.edu>"
@@ -10,6 +10,9 @@ readme = "README.md"
 repository = "https://github.com/MichaelKarpe/mylearn"
 homepage = ""
 keywords = ["airflow", "mlflow"]
+classifiers = [
+    "Programming Language :: Python :: 3.11"
+]
 
 [tool.poetry.dependencies]
 python = "^3.11,<3.12"  # Compatible python versions must be declared here
@@ -96,7 +99,7 @@ AIRFLOW__CORE__MAX_MAP_LENGTH = "65536"
 AIRFLOW__CORE__PARALLELISM = "64"
 AIRFLOW__DATABASE__SQL_ALCHEMY_CONN = "postgresql+psycopg2://airflow:airflow@localhost/airflow"
 AIRFLOW__SCHEDULER__CATCHUP_BY_DEFAULT = "False"
-CODE_FOLDERS = "airflow/dags mlflow mylearn tests"
+CODE_FOLDERS = "airflow/dags mylearn"  # mlflow tests
 MLFLOW_PIPELINES_PROFILE = "local"
 
 [tool.poe.tasks.airflow-clean]
