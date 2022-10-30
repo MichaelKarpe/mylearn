@@ -1,0 +1,184 @@
+[tool.poetry]
+name = "mylearn"
+version = "0.0.2"
+description = "mylearn: my Machine Learning framework"
+license = "MIT"
+authors = [
+    "Michael Karpe <michael.karpe@berkeley.edu>"
+]
+readme = "README.md"
+repository = "https://github.com/MichaelKarpe/mylearn"
+homepage = ""
+keywords = ["airflow", "mlflow"]
+classifiers = [
+    "Programming Language :: Python :: 3.11"
+]
+
+[tool.poetry.dependencies]
+python = "^3.11,<3.12"  # Compatible python versions must be declared here
+apache-airflow = {version = "^2.4.2", extras = ["postgres"]}
+# mlflow = {version = "^1.30.0", extras = ["pipelines"]}
+pandas = "^1.5.1"
+psycopg2 = "^2.9.5"
+
+[tool.poetry.group.clustering.dependencies]
+# k-means-constrained = "^0.7.2"
+
+[tool.poetry.group.compvis.dependencies]
+opencv-python = "^4.6.0.66"
+# scikit-image = "^0.19.3"
+
+[tool.poetry.group.dl.dependencies]
+keras = "^2.10.0"
+# tensorflow = "^2.10.0"
+# transformers = "^4.23.1"
+
+[tool.poetry.group.geo.dependencies]
+geopandas = "^0.11.1"
+
+[tool.poetry.group.gbms.dependencies]
+# catboost = "^1.1"
+lightgbm = "^3.3.3"
+xgboost = "^1.6.2"
+
+[tool.poetry.group.ml.dependencies]
+hyperopt = "^0.2.7"
+mapie = "^0.4.2"
+scikit-learn = "^1.1.2"
+
+[tool.poetry.group.nlp.dependencies]
+spacy = "^3.4.2"
+
+[tool.poetry.group.plotting.dependencies]
+matplotlib = "^3.6.0"
+plotly = "^5.10.0"
+seaborn = "^0.12.1"
+
+[tool.poetry.group.sci.dependencies]
+scipy = "^1.9.3"
+fastcluster = "^1.2.6"
+
+[tool.poetry.group.scraping.dependencies]
+beautifulsoup4 = "^4.11.1"
+requests = "^2.28.1"
+
+[tool.poetry.group.stats.dependencies]
+# statsmodels = "^0.13.2"
+
+[tool.poetry.group.qfinance.dependencies]
+empyrical = "^0.5.5"
+# tslearn = "^0.5.2"
+
+[tool.poetry.group.qscraping.dependencies]
+yfinance = "^0.1.79"
+
+[tool.poetry.dev-dependencies]
+black = {version = "^22.6", extras = ["jupyter"]}
+flake8 = "^5.0.4"
+ipython-autotime = "^0.3.1"
+isort = "^5.10.1"
+jupyterlab = "^3.4.5"
+mypy = "^0.982"
+# pandas-stubs = "^1.5.0.221012"
+pip = "^22.2.2"
+poethepoet = "^0.16.0"
+pre-commit = "^2.20.0"
+pylint = "^2.15"
+pytest = "^7.1.2"
+pytest-cov = "^3.0"
+types-requests = "^2.28.11.1"
+
+[tool.poe.env]
+AIRFLOW_HOME = "${PWD}/airflow"
+AIRFLOW__CORE__LOAD_EXAMPLES = "false"
+AIRFLOW__CORE__DEFAULT_TIMEZONE = "Europe/Amsterdam"
+AIRFLOW__CORE__EXECUTOR = "LocalExecutor"
+AIRFLOW__CORE__MAX_ACTIVE_RUNS_PER_DAG = "1"
+AIRFLOW__CORE__MAX_ACTIVE_TASKS_PER_DAG = "64"
+AIRFLOW__CORE__MAX_MAP_LENGTH = "65536"
+AIRFLOW__CORE__PARALLELISM = "64"
+AIRFLOW__DATABASE__SQL_ALCHEMY_CONN = "postgresql+psycopg2://airflow:airflow@localhost/airflow"
+AIRFLOW__SCHEDULER__CATCHUP_BY_DEFAULT = "False"
+CODE_FOLDERS = "airflow/dags mylearn"  # mlflow tests
+MLFLOW_PIPELINES_PROFILE = "local"
+
+[tool.poe.tasks.airflow-clean]
+sequence = [
+    {cmd = "rm -r airflow/logs"},
+    {cmd = "rm airflow/airflow.cfg"},
+    {cmd = "rm airflow/airflow.db"},  # comment this line if Airflow LocalExecutor and database are uncommented above
+    {cmd = "rm airflow/webserver_config.py"},
+]
+
+[tool.poe.tasks.airflow-init]
+sequence = [
+    {cmd = "airflow db init"},
+    {cmd = """
+    airflow users create --role Admin --username admin --email admin --firstname admin --lastname admin --password admin
+    """},
+]
+
+[tool.poe.tasks.airflow-scheduler]
+cmd = "airflow scheduler"
+
+[tool.poe.tasks.airflow-webserver]
+cmd = "airflow webserver --port 8080"
+
+[tool.poe.tasks.mlflow-run]
+sequence = [
+    {cmd = "mlflow pipelines run --step ingest"},
+    {cmd = "mlflow pipelines run --step split"},
+    {cmd = "mlflow pipelines run --step transform"},
+    {cmd = "mlflow pipelines run --step train"},
+    {cmd = "mlflow pipelines run --step evaluate"},
+    {cmd = "mlflow pipelines run --step register"},
+]
+
+[tool.poe.tasks.mlflow-ui]
+cmd = """
+mlflow ui \
+   --backend-store-uri sqlite:///metadata/mlflow/mlruns.db \
+   --default-artifact-root ./metadata/mlflow/mlartifacts \
+   --host localhost
+   --port 5000
+"""
+
+[tool.poe.tasks.black]
+cmd = "black ${CODE_FOLDERS} -l 120"
+
+[tool.poe.tasks.export-requirements]
+cmd = "poetry export -f requirements.txt --output requirements.txt --without-hashes"
+
+[tool.poe.tasks.flake8]
+cmd = "flake8 --config=config/flake8.ini ${CODE_FOLDERS}"
+
+[tool.poe.tasks.isort]
+cmd = "isort ${CODE_FOLDERS}"
+
+[tool.poe.tasks.mypy]
+cmd = "mypy ${CODE_FOLDERS} --ignore-missing-imports"
+
+[tool.poe.tasks.reinstall]
+sequence = [
+    {cmd = "poetry lock"},
+    {cmd = "poetry install"},
+    {cmd = "poe export-requirements"},
+]
+
+[tool.poe.tasks.test]
+cmd = "pytest tests"
+
+[tool.poe.tasks.checks]
+sequence = [
+    {cmd = "poe black"},
+    {cmd = "poe isort"},
+    {cmd = "poe mypy"},
+    # {cmd = "poe test"}
+]
+
+[tool.black]
+line-length = 120
+
+[build-system]
+requires = ["poetry-core>=1.3.2"]
+build-backend = "poetry.core.masonry.api"
