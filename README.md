@@ -18,19 +18,47 @@ learning systems in a production perspective.
 
 # Index
 
-1. [Prerequisites](#prerequisites)
+1. [Recommended prerequisites](#prerequisites)
 2. [Installation & Setup](#installation-setup)
 3. [Usage](#usage)
 
-# Prerequisites
+# Recommended prerequisites
+
+## Git
+
+```commandline
+sudo apt-get install git
+```
 
 ## pyenv
 
-To be completed with how to install and setup pyenv
+Install [binary dependencies and build tools](https://github.com/pyenv/pyenv/wiki#suggested-build-environment):
+```commandline
+sudo apt update
+sudo apt install build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev curl libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+```
+
+Install pyenv:
+```commandline
+curl https://pyenv.run | bash
+echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+Install a Python version and set it as default:
+```commandline
+pyenv install 3.11.2
+pyenv global 3.11.2
+```
 
 ## poetry
 
-To be completed with how to install and setup poetry
+```commandline
+curl -sSL https://install.python-poetry.org | python3 -
+echo 'export PATH="~/.local/bin:$PATH"' >> ~/.bashrc
+```
 
 # Installation & Setup
 
@@ -39,14 +67,22 @@ to make its installation and setup surprisingly simple.
 
 ## Installation
 
-It is recommended to install requirements within a virtualenv located at the project root level, although not required.
+It is recommended to install requirements within a `virtualenv` located at the project root level, although not required.
 ```commandline
 poetry config virtualenvs.in-project true
 ```
 
-Installation is run with
+Installation is run with:
 ```commandline
 poetry install
+```
+
+Should you install from the `requirements.txt` file instead of the `poetry.lock` file:
+```commandline
+pyenv shell 3.11.2
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
 ## Airflow Setup
