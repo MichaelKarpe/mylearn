@@ -35,9 +35,9 @@ opencv-python = "^4.7.0.72"
 # scikit-image = "^0.20.0"
 
 [tool.poetry.group.dl.dependencies]
-tensorflow = "^2.12.0"
-torch = "^1.13.1"
-transformers = "^4.27.1"
+torch = "^2.0.0"
+accelerate = "^0.18.0"
+transformers = "^4.28.1"
 
 [tool.poetry.group.geo.dependencies]
 geopandas = "^0.11.1"
