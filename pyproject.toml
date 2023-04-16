@@ -20,85 +20,85 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.8,<3.12"  # Compatible python versions must be declared here
 apache-airflow = {version = "^2.5.2", extras = ["postgres"]}
-llvmlite = {git = "git@github.com:numba/llvmlite.git", branch = "main"}
-numba = {git = "git@github.com:numba/numba.git", branch = "main"}
-mlflow = {version = "^2.2.2", extras = ["pipelines"]}  # llvmlite 0.39.1 installation error
+llvmlite = "^0.40.0rc1"
+numba = "^0.57.0rc1"
+mlflow = {version = "^2.2.2", extras = ["pipelines"]}
 pandas = "^1.5.3"
-polars = "^0.16.16"
+#polars = "^0.16.16"
 psycopg2 = "^2.9.5"
-
-[tool.poetry.group.clustering.dependencies]
-k-means-constrained = "^0.7.2"
-
-[tool.poetry.group.compvis.dependencies]
-opencv-python = "^4.7.0.72"
-# scikit-image = "^0.20.0"  # requires scipy "<1.9" (?)
-
-[tool.poetry.group.dl.dependencies]
-tensorflow = "^2.12.0"
-torch = "^1.13.1"
-transformers = "^4.27.1"
-
-[tool.poetry.group.geo.dependencies]
-geopandas = "^0.11.1"
-
-[tool.poetry.group.gbms.dependencies]
-lightgbm = "^3.3.5"
-xgboost = "1.7.3"
-
-[tool.poetry.group.linux.dependencies]
+#
+#[tool.poetry.group.clustering.dependencies]
+#k-means-constrained = "^0.7.2"
+#
+#[tool.poetry.group.compvis.dependencies]
+#opencv-python = "^4.7.0.72"
+## scikit-image = "^0.20.0"  # requires scipy "<1.9" (?)
+#
+#[tool.poetry.group.dl.dependencies]
+#tensorflow = "^2.12.0"
+#torch = "^1.13.1"
+#transformers = "^4.27.1"
+#
+#[tool.poetry.group.geo.dependencies]
+#geopandas = "^0.11.1"
+#
+#[tool.poetry.group.gbms.dependencies]
+#lightgbm = "^3.3.5"
+#xgboost = "1.7.3"
+#
+#[tool.poetry.group.linux.dependencies]
 nmcli = "^1.2.0"
-
-[tool.poetry.group.misc.dependencies]
-youtube-transcript-api = "^0.5.0"
-
-[tool.poetry.group.ml.dependencies]
-hyperopt = "^0.2.7"
-mapie = "^0.6.3"
-optuna = "^3.1.0"
+#
+#[tool.poetry.group.misc.dependencies]
+#youtube-transcript-api = "^0.5.0"
+#
+#[tool.poetry.group.ml.dependencies]
+#hyperopt = "^0.2.7"
+#mapie = "^0.6.3"
+#optuna = "^3.1.0"
 scikit-learn = "^1.2.2"
-
-[tool.poetry.group.nlp.dependencies]
-rpunct = {git = "git@github.com:kb-open/rpunct.git", branch = "patch-1"}
-spacy = "^3.5.1"
-sentencepiece = "^0.1.97"
-
-[tool.poetry.group.plotting.dependencies]
-matplotlib = "^3.6.0"
-plotly = "^5.10.0"
-seaborn = "^0.12.1"
-
-[tool.poetry.group.sci.dependencies]
-scipy = "^1.10.1"  # scipy = "^1.10.1" for python = ">=3.8,<3.11"
-fastcluster = "^1.2.6"
-
-[tool.poetry.group.scraping.dependencies]
-beautifulsoup4 = "^4.11.1"
-requests = "^2.28.1"
+#
+#[tool.poetry.group.nlp.dependencies]
+#rpunct = {git = "https://github.com/kb-open/rpunct.git", branch = "patch-1"}
+#spacy = "^3.5.1"
+#sentencepiece = "^0.1.97"
+#
+#[tool.poetry.group.plotting.dependencies]
+#matplotlib = "^3.6.0"
+#plotly = "^5.10.0"
+#seaborn = "^0.12.1"
+#
+#[tool.poetry.group.sci.dependencies]
+#scipy = "^1.10.1"  # scipy = "^1.10.1" for python = ">=3.8,<3.11"
+#fastcluster = "^1.2.6"
+#
+#[tool.poetry.group.scraping.dependencies]
+#beautifulsoup4 = "^4.11.1"
+#requests = "^2.28.1"
 scrapy = "^2.8.0"
-
-[tool.poetry.group.stats.dependencies]
-# statsmodels = "^0.13.5"  # requires scipy = ">=1.3,<1.9"
-statsforecast = "^1.5.0"
-
-[tool.poetry.group.timeseries.dependencies]
-arch = "^5.3.1"
-# neuralprophet = "^0.5.3"  # requires torch (>=1.8.0,<2.0)
-prophet = "^1.1.2"
-sktime = "^0.16.1"
-
-[tool.poetry.group.qfinance.dependencies]
-alphalens-reloaded = "^0.4.3"
-empyrical-reloaded = "^0.5.9"
-pyfolio-reloaded = "^0.9.5"
-pyod = "^1.0.9"
-# tods = {git = "git@github.com:datamllab/tods.git", branch = "master"}
-# tslearn = "^0.5.3.2"  # llvmlite 0.34.0 installation error
-quantstats = "^0.0.59"
-# zipline-reloaded = "^2.4"  # Could not build wheels for TA-Lib, which is required to install pyproject.toml-based
-
-[tool.poetry.group.qscraping.dependencies]
-yfinance = "^0.1.79"
+#
+#[tool.poetry.group.stats.dependencies]
+## statsmodels = "^0.13.5"  # requires scipy = ">=1.3,<1.9"
+#statsforecast = "^1.5.0"
+#
+#[tool.poetry.group.timeseries.dependencies]
+#arch = "^5.3.1"
+## neuralprophet = "^0.5.4"
+#prophet = "^1.1.2"
+#sktime = "^0.16.1"
+#
+#[tool.poetry.group.qfinance.dependencies]
+#alphalens-reloaded = "^0.4.3"
+#empyrical-reloaded = "^0.5.9"
+#pyfolio-reloaded = "^0.9.5"
+#pyod = "^1.0.9"
+## tods = {git = "https://github.com/datamllab/tods.git", branch = "master"}
+## tslearn = "^0.5.3.2"  # llvmlite 0.34.0 installation error
+#quantstats = "^0.0.59"
+## zipline-reloaded = "^2.4"  # Could not build wheels for TA-Lib, which is required to install pyproject.toml-based
+#
+#[tool.poetry.group.qscraping.dependencies]
+#yfinance = "^0.1.79"
 
 [tool.poetry.dev-dependencies]
 black = {version = "^23.1.0", extras = ["jupyter"]}
@@ -119,7 +119,7 @@ tox = "^4.4.7"
 tox-gh-actions = "^3.1.0"
 
 [tool.poe.env]
-AIRFLOW_HOME = "${PWD}/airflow"
+AIRFLOW_HOME = "${PWD}/mlairflow"
 AIRFLOW__CORE__LOAD_EXAMPLES = "false"
 AIRFLOW__CORE__DEFAULT_TIMEZONE = "Europe/Amsterdam"
 AIRFLOW__CORE__EXECUTOR = "LocalExecutor"
@@ -132,15 +132,15 @@ AIRFLOW__SCHEDULER__CATCHUP_BY_DEFAULT = "False"
 AIRFLOW__SCHEDULER__PARSING_PROCESSES = "1"
 AIRFLOW__SCHEDULER__PRINT_STATS_INTERVAL = "0"
 AIRFLOW__SCHEDULER__SCHEDULER_HEARTBEAT_SEC = "1"
-CODE_FOLDERS = "airflow/dags mylearn"  # mlflow tests
-MLFLOW_PIPELINES_PROFILE = "local"
+CODE_FOLDERS = "mlairflow/dags mylearn"  # mlflow tests
+MLFLOW_RECIPES_PROFILE = "local"
 
 [tool.poe.tasks.airflow-clean]
 sequence = [
-    {cmd = "rm -r airflow/logs"},
-    {cmd = "rm airflow/airflow.cfg"},
-    {cmd = "rm airflow/airflow.db"},  # comment this line if Airflow LocalExecutor and database are uncommented above
-    {cmd = "rm airflow/webserver_config.py"},
+    {shell = "rm -r mlairflow/logs"},
+    {shell = "rm mlairflow/airflow.cfg"},
+    {shell = "rm mlairflow/airflow.db"},  # comment this line if Airflow LocalExecutor and database are uncommented above
+    {shell = "rm mlairflow/webserver_config.py"},
 ]
 
 [tool.poe.tasks.airflow-init]
@@ -158,14 +158,15 @@ cmd = "airflow scheduler"
 cmd = "airflow webserver --port 8080"
 
 [tool.poe.tasks.mlflow-run]
-sequence = [
-    {cmd = "mlflow pipelines run --step ingest"},
-    {cmd = "mlflow pipelines run --step split"},
-    {cmd = "mlflow pipelines run --step transform"},
-    {cmd = "mlflow pipelines run --step train"},
-    {cmd = "mlflow pipelines run --step evaluate"},
-    {cmd = "mlflow pipelines run --step register"},
-]
+shell = """
+cd mlairflow
+mlflow recipes run --step ingest --profile $MLFLOW_RECIPES_PROFILE
+mlflow recipes run --step split --profile $MLFLOW_RECIPES_PROFILE
+mlflow recipes run --step transform --profile $MLFLOW_RECIPES_PROFILE
+mlflow recipes run --step train --profile $MLFLOW_RECIPES_PROFILE
+mlflow recipes run --step evaluate --profile $MLFLOW_RECIPES_PROFILE
+mlflow recipes run --step register --profile $MLFLOW_RECIPES_PROFILE
+"""
 
 [tool.poe.tasks.mlflow-ui]
 cmd = """
@@ -216,6 +217,7 @@ line-length = 120
 legacy_tox_ini = """
 [tox]
 envlist = py{38,39,310,311}-{linux,macos,windows}
+isolated_build = true
 
 [gh-actions]
 python =
@@ -231,6 +233,9 @@ PLATFORM =
     windows-latest: windows
 
 [testenv]
+skip_install = true
+allowlist_externals = poetry
+commands_pre = poetry install
 commands = poetry run pytest tests
 """
 

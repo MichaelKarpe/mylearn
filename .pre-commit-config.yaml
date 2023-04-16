@@ -17,7 +17,7 @@ repos:
     -   id: pyupgrade
         args: [--py37-plus]
 -   repo: https://github.com/psf/black
-    rev: 22.6.0
+    rev: 23.1.0
     hooks:
     -   id: black
         args: [-l 120, --check]
@@ -27,7 +27,7 @@ repos:
     -   id: flake8
         args: [--config=config/flake8.ini]
 -   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.971
+    rev: v1.1.1
     hooks:
     -   id: mypy
         additional_dependencies: [types-all]
