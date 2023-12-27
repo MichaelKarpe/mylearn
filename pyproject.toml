@@ -11,21 +11,21 @@ repository = "https://github.com/MichaelKarpe/mylearn"
 homepage = "https://github.com/MichaelKarpe/mylearn"
 keywords = ["airflow", "mlflow"]
 classifiers = [
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11"
 ]
 
 [tool.poetry.dependencies]
-python = "^3.8,<3.12"  # Compatible python versions must be declared here
-apache-airflow = {version = "^2.5.3", extras = ["postgres"]}
-llvmlite = "^0.40.0rc1"
-numba = "^0.57.0rc1"
-mlflow = {version = "^2.2.2", extras = ["pipelines"]}
-pandas = "^1.5.3"
-polars = "^0.17.3"
-psycopg2 = "^2.9.5"
+python = "^3.9,<3.12"  # Compatible python versions must be declared here
+apache-airflow = {version = "^2.8.0", extras = ["postgres"]}
+llvmlite = "^0.41.1"
+numba = "^0.58.1"
+mlflow = {version = "^2.9.2", extras = ["pipelines"]}
+pandas = "^2.1.4"
+# patito = "^0.5.1"
+polars = "^0.20.1"
+psycopg2-binary = "^2.9.9"
 
 [tool.poetry.group.clustering.dependencies]
 k-means-constrained = "^0.7.2"
@@ -35,40 +35,41 @@ opencv-python = "^4.7.0.72"
 # scikit-image = "^0.20.0"
 
 [tool.poetry.group.dl.dependencies]
-torch = "^2.0.0"
-accelerate = "^0.18.0"
-transformers = "^4.28.1"
+# torch = "^2.0.0"
+accelerate = "^0.25.0"
+bitsandbytes = "^0.41.3"
+transformers = "^4.36.2"
 
 [tool.poetry.group.geo.dependencies]
-geopandas = "^0.11.1"
+geopandas = "^0.14.1"
 
 [tool.poetry.group.gbms.dependencies]
-lightgbm = "^3.3.5"
-xgboost = "1.7.3"
+lightgbm = "^4.1.0"
+xgboost = "^2.0.3"
 
 [tool.poetry.group.linux.dependencies]
-nmcli = "^1.2.0"
+nmcli = "^1.3.0"
 
 [tool.poetry.group.misc.dependencies]
-youtube-transcript-api = "^0.5.0"
+youtube-transcript-api = "^0.6.1"
 
 [tool.poetry.group.ml.dependencies]
 hyperopt = "^0.2.7"
-mapie = "^0.6.3"
-optuna = "^3.1.0"
-scikit-learn = "^1.2.2"
+mapie = "^0.7.0"
+optuna = "^3.5.0"
+scikit-learn = "^1.3.2"
 
 [tool.poetry.group.nlp.dependencies]
-spacy = "^3.5.1"
-sentencepiece = "^0.1.97"
+spacy = "^3.7.2"
+sentencepiece = "^0.1.99"
 
 [tool.poetry.group.plotting.dependencies]
-matplotlib = "^3.6.0"
-plotly = "^5.10.0"
-seaborn = "^0.12.1"
+matplotlib = "^3.8.2"
+plotly = "^5.18.0"
+seaborn = "^0.13.0"
 
 [tool.poetry.group.sci.dependencies]
-scipy = "^1.10.1"
+scipy = "^1.11.4"
 fastcluster = "^1.2.6"
 
 [tool.poetry.group.scraping.dependencies]
@@ -84,7 +85,7 @@ statsforecast = "^1.5.0"
 arch = "^5.3.1"
 # neuralprophet = "^0.5.4"
 prophet = "^1.1.2"
-sktime = "^0.16.1"
+# sktime = "^0.16.1"
 
 [tool.poetry.group.qfinance.dependencies]
 alphalens-reloaded = "^0.4.3"
@@ -97,7 +98,7 @@ quantstats = "^0.0.59"
 yfinance = "^0.1.79"
 
 [tool.poetry.dev-dependencies]
-black = {version = "^23.1.0", extras = ["jupyter"]}
+black = {version = "^23.12.0", extras = ["jupyter"]}
 flake8 = "^5.0.4"
 ipython-autotime = "^0.3.1"
 isort = "^5.10.1"
@@ -111,8 +112,8 @@ pylint = "^2.15"
 pytest = "^7.1.2"
 pytest-cov = "^3.0"
 types-requests = "^2.28.11.1"
-tox = "^4.4.7"
-tox-gh-actions = "^3.1.0"
+tox = "^4.11.4"
+tox-gh-actions = "^3.1.3"
 
 [tool.poe.env]
 AIRFLOW_HOME = "${PWD}/mlairflow"
@@ -123,7 +124,7 @@ AIRFLOW__CORE__MAX_ACTIVE_RUNS_PER_DAG = "1"
 AIRFLOW__CORE__MAX_ACTIVE_TASKS_PER_DAG = "1"
 AIRFLOW__CORE__MAX_MAP_LENGTH = "65536"
 AIRFLOW__CORE__PARALLELISM = "1"
-AIRFLOW__DATABASE__SQL_ALCHEMY_CONN = "postgresql+psycopg2://airflow:airflow@localhost/airflow"
+AIRFLOW__DATABASE__SQL_ALCHEMY_CONN = "postgresql+psycopg2://airflow:airflow@localhost:5432/airflow"
 AIRFLOW__SCHEDULER__CATCHUP_BY_DEFAULT = "False"
 AIRFLOW__SCHEDULER__PARSING_PROCESSES = "1"
 AIRFLOW__SCHEDULER__PRINT_STATS_INTERVAL = "0"
